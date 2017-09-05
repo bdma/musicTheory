@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>music</title>
+</head>
+
+<body>
+  <div> 1 2 34 5 6 7</div>
+  <div> C D EF G A B</div>
+  <script>
+    var cTonic = ["C", "$C", "D", "$D", "E", "F", "$F", "G", "$G", "A", "$A", "B"]
+    function MakeArray(tonic) {
+      function MakeNote(gap, num) {
+        for (var i = 0, l = num; i < l; i++) {
+          indexObj += gap;
+          // console.log("indexObj:", indexObj)
+          if (indexObj > 11) {
+            indexObj %= 12
+            console.log(">12", indexObj)
+          }
+          if (indexObj == 12) {
+            console.log("进入indexObj=12")
+            arr = arr.concat(cTonic.pop())
+          } else {
+
+            arr = arr.concat(cTonic.slice(indexObj, indexObj + 1));
+          }
+          // console.log("arr:", arr)
+        }
+      }
+      var indexObj = cTonic.indexOf(tonic)
+      console.log("初始indexObj:", indexObj)
+      console.log("传入tonic:", tonic)
+
+      var arr = [tonic];
+      MakeNote(2, 2)
+      MakeNote(1, 1)
+      MakeNote(2, 3)
+      //八度，轮回第一个音符
+      MakeNote(1, 1)
+      // console.log("arr:", arr)
+      return arr;
+    }
+
+    var G = MakeArray("G")
+    console.log("G:", G)
+    var D = MakeArray("D")
+    console.log("D:", D)
+    var A = MakeArray("A")
+    console.log("A:", A)
+    var E = MakeArray("E")
+    console.log("E:", E)
+    var B = MakeArray("B")
+    console.log("B:", B)
+    var $F = MakeArray("$F")
+    console.log("$F:", $F)
+  </script>
+</body>
+
+</html>
